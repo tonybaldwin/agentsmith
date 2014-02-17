@@ -1,6 +1,8 @@
 # Agent Smith README
 version 0.1
   
+![AgentSmith](http://tonybaldwin.homelinux.net/images/agentsmith1.jpg)
+
 DEPENDENCIES:
 
 Agent Smith requires:
@@ -8,7 +10,7 @@ Agent Smith requires:
 * Tk8.5, and
 * tcllib (for http, tls, and base64)
 
-It also requires that you have an account on a red matrix server, of course.
+It also requires that you [Get Zot](http://getzot.com), of course.
 
 (see https://redmatrix.me )
 

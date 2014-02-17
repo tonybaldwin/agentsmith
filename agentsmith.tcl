@@ -32,6 +32,7 @@ global login
 global subject
 global tags
 global ptext
+global cats
 
 set allvars [list rurl uname pword txfg txbg brow wbg wtx novar]
 
@@ -132,6 +133,7 @@ menu .fluff.bb.t -tearoff 1
 .fluff.bb.t add command -label "BlockQuote" -command {bbquote}
 .fluff.bb.t add command -label "CodeBlock" -command {bcode}
 .fluff.bb.t add command -label "Time Stamp" -command {indate}
+.fluff.bb.t add command -label "Observer Name" -command {obname}
 
 
 # view menu
@@ -187,6 +189,8 @@ frame .p
 
 grid [tk::label .p.sub -text "Title: "]\
 [tk::entry .p.tit -textvar subject]\
+[tk::label .p.lbl2 -text "Category/ies: "]\
+[tk::entry .p.cats -textvar cats]\
 [tk::label .p.lbl1 -text "Channel: "]\
 [tk::entry .p.uj -textvariable chan]\
 [tk::button .p.post -text "GO" -command rpost]\
@@ -781,6 +785,10 @@ proc bbquote {} {
 .txt.txt insert insert "\[quote\]INSERT QUOTED TEXT HERE\[/quote\]"
 }
 
+proc obname {} {
+	.txt.txt insert insert "\[observer.name\]"
+}
+
 proc bmail {} {
 
 	toplevel .link
@@ -942,7 +950,7 @@ proc rpost {} {
 	::http::register https 443 ::tls::socket
 	set auth "$::uname:$::pword"
 	set auth64 [::base64::encode $auth]
-	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "title" "$::subject"]
+	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "categories" $::cats "title" "$::subject"]
 	set myauth [list "Authorization" "Basic $auth64"]
 	set token [::http::geturl $::rurl/api/statuses/update.xml -headers $myauth -query $myquery]
 }
