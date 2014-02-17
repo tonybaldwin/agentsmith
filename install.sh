@@ -1,10 +1,13 @@
 #!/bin/bash
 
 ##########################################################3
-# This script will install rmatrix.tcl on a gnu/linux system.
+# This script will install Agent Smith on a gnu/linux system.
 # If you're using BSD or Mac OS, I believe it should also work fine.
-# If you are using Windows, I can't help you.
-# I'm trying to find someone to write an appropriate install script for Windows.
+# If you are using Windows, move the file agentsmith.conf to
+# C:/Users/$YOURNAME/.agentsmith.conf
+# then just run the tcl script, agentsmith.tcl
+# make sure, of course, that you have Tcl/Tk installed.
+# see readme
 ##########################################################3
 
 name=$(whoami)
