@@ -3,6 +3,8 @@ version 0.1
   
 ![AgentSmith](http://tonybaldwin.homelinux.net/images/agentsmith1.jpg)
 
+Take the RED pill.
+
 DEPENDENCIES:
 
 Agent Smith requires:

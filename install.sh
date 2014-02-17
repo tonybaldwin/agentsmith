@@ -15,9 +15,13 @@ if [ ! -d $HOME/bin/ ]; then
  	export PATH
 fi
 
-echo "Installing rmatrix.tcl..."
+echo "Wake up, $name ..."
+echo "The Matrix has you!"
+echo "Follow the White Rabbit ..."
 
-echo "Creating config files..."
+echo "Installing Agent Smith ..."
+
+echo "Creating config files ..."
 
 cp agentsmith.conf $HOME/.agentsmith.conf
 
@@ -29,6 +33,5 @@ chmod +x $HOME/bin/agentsmith
 echo "Installation complete!"
 echo "Thank you, $name, for using Agent Smith"
 echo "To run Agent Smith from terminal type agentsmith, or make an icon/menu item/short cut to /home/$name/bin/agentsmith"
-echo "Enjoy!"
 
 exit
