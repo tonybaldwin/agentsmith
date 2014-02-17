@@ -950,7 +950,7 @@ proc rpost {} {
 	::http::register https 443 ::tls::socket
 	set auth "$::uname:$::pword"
 	set auth64 [::base64::encode $auth]
-	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "categories" $::cats "title" "$::subject"]
+	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "category" $::cats "title" "$::subject"]
 	set myauth [list "Authorization" "Basic $auth64"]
 	set token [::http::geturl $::rurl/api/statuses/update.xml -headers $myauth -query $myquery]
 }
