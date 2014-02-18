@@ -126,6 +126,7 @@ tk::button .fluff.abt -text "About" -command {about}
 # bbcode menu
 ##################
 menu .fluff.bb.t -tearoff 1
+.fluff.bb.t add command -label "RedMatrix" -command {rbang}
 .fluff.bb.t add command -label "Bold" -command {bbbold}
 .fluff.bb.t add command -label "Italics" -command {bbital}
 .fluff.bb.t add command -label "Underline" -command {bbunder}
@@ -148,8 +149,8 @@ menu .fluff.bb.t -tearoff 1
 .fluff.bb.t add command -label "Observer Address" -command {obaddress}
 .fluff.bb.t add command -label "Observer Url" -command {oburl}
 .fluff.bb.t add command -label "Observer Base Url" -command {obbaseurl}
-.fluff.bb.t add command -label "Authed Observer" -command {obauthed}
-.fluff.bb.t add command -label "UnAuthed Observer" -command {obunauthed}
+.fluff.bb.t add command -label "Authed Observer" -command {obauth}
+.fluff.bb.t add command -label "UnAuthed Observer" -command {obnoauth}
 .fluff.bb.t add separator
 .fluff.bb.t add command -label "BBCode Help" -command {bbhelp}
 
@@ -742,28 +743,7 @@ proc wordcount {} {
 proc indate {} {
 	if {![info exists date]} {set date " "}
 	set date [clock format [clock seconds] -format "%R %p %D"]
-	.txt.txt insert insert $date
-}
-
-proc userin {} {
-.txt.txt insert insert "<lj user=\"put name here\"> "
-}
-
-proc commin {} {
-.txt.txt insert insert "<lj comm=\"put name here\"> "
-}
-
-proc cutin {} {
-.txt.txt insert insert "<lj-cut text=\"put text here\"> "
-}
-
-# note distinct dreamwidth cut and user
-proc userdw {} {
-.txt.txt insert insert "<user name=\"put name here\"> "
-}
-
-proc cutdw {} {
-.txt.txt insert insert "<cut text=\"put text here\"> "
+	.txt.txt insert insert "$date\n"
 }
 
 # bbcode tags
@@ -784,66 +764,78 @@ pack .link.s -in .link -side left
 
 frame .link.btns
 
-grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[url=$inurl\]$ltxt\[/url\]"}]\
+grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[url=$inurl\]$ltxt\[/url\] "}]\
 [tk::button .link.btns.out -text "Done" -command {destroy .link}]
 
 pack .link.btns -in .link -side left
 }
 
 proc bcode {} {
-.txt.txt insert insert "\[code\]INSERT CODE HERE\[/code\]"
+.txt.txt insert insert "\[code\]INSERT CODE HERE\[/code\] "
 }
 
 proc embed {} {
-.txt.txt insert insert "\[embed\]INSERT VIDEO URL HERE\[/embed\]"
+.txt.txt insert insert "\[embed\]INSERT VIDEO URL HERE\[/embed\] "
+}
+
+proc rbang {} {
+	.txt.txt insert insert " r# "
 }
 
 proc audio {} {
-.txt.txt insert insert "\[audio\]INSERT VIDEO URL HERE\[/audio\]"
+.txt.txt insert insert "\[audio\]INSERT AUDIO URL HERE\[/audio\] "
 }
 
 proc bbquote {} {
-.txt.txt insert insert "\[quote\]INSERT QUOTED TEXT HERE\[/quote\]"
+.txt.txt insert insert "\[quote\]INSERT QUOTED TEXT HERE\[/quote\] "
 }
 
 proc bbbold {} {
-.txt.txt insert insert "\[b\]INSERT BOLD TEXT HERE\[/b\]"
+.txt.txt insert insert "\[b\]INSERT BOLD TEXT HERE\[/b\] "
 }
 
 proc bbital {} {
-.txt.txt insert insert "\[i\]INSERT ITALIC TEXT HERE\[/i\]"
+.txt.txt insert insert "\[i\]INSERT ITALIC TEXT HERE\[/i\] "
 }
 
 proc bbunder {} {
-.txt.txt insert insert "\[u\]INSERT UNDERLINE TEXT HERE\[/u\]"
+.txt.txt insert insert "\[u\]INSERT UNDERLINE TEXT HERE\[/u\] "
 }
 
 proc bbstrike {} {
-.txt.txt insert insert "\[s\]INSERT STRIKETHROUGH TEXT HERE\[/s\]"
+.txt.txt insert insert "\[s\]INSERT STRIKETHROUGH TEXT HERE\[/s\] "
 }
  
 proc nobb {} {
-.txt.txt insert insert "\[nobb\]INSERT TEXT HERE\[/nobb\]"
+.txt.txt insert insert "\[nobb\]INSERT TEXT HERE\[/nobb\] "
 }
  
 proc obname {} {
-	.txt.txt insert insert "\[observer.name\]"
+	.txt.txt insert insert "\[observer.name\] "
 }
 
 proc obaddress {} {
-	.txt.txt insert insert "\[observer.address\]"
+	.txt.txt insert insert "\[observer.address\] "
 }
 
 proc oburl {} {
-	.txt.txt insert insert "\[observer.url\]"
+	.txt.txt insert insert "\[observer.url\] "
+}
+
+proc obauth {} {
+	.txt.txt insert insert "\[observer=1]INSERT TEXT FOR AUTHED OBSERVER\[/observer\] "
+}
+
+proc obnoauth {} {
+	.txt.txt insert insert "\[observer=0]INSERT TEXT FOR UNAUTHED OBSERVER\[/observer\] "
 }
 
 proc obbaseurl {} {
-	.txt.txt insert insert "\[observer.baseurl\]"
+	.txt.txt insert insert "\[observer.baseurl\] "
 }
 
 proc obphoto {} {
-	.txt.txt insert insert "\[observer.photo\]"
+	.txt.txt insert insert "\[observer.photo\] "
 }
 
 proc bmail {} {
@@ -859,7 +851,7 @@ proc bmail {} {
 
 	frame .link.btns
 
-	grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[mail\]$eml\[/mail\]"}]\
+	grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[mail\]$eml\[/mail\] "}]\
 	[tk::button .link.btns.out -text "Done" -command {destroy .link}]
 
 	pack .link.btns -in .link -side left
@@ -879,7 +871,7 @@ pack .link.s -in .link -side left
 
 frame .link.btns
 
-grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[img\]$imurl\[/img\]"}]\
+grid [tk::button .link.btns.in -text "Insert link" -command {.txt.txt insert insert "\[img\]$imurl\[/img\] "}]\
 [tk::button .link.btns.out -text "Done" -command {destroy .link}]
 
 pack .link.btns -in .link -side left
