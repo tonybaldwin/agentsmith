@@ -1,7 +1,17 @@
 # Agent Smith README
 version 0.1
   
-![AgentSmith](http://tonybaldwin.homelinux.net/images/agentsmith1.jpg)
+![AgentSmith](http://tonybaldwin.homelinux.net/images/agentsmith-blackred.png)
+
+Agent Smith is not a bad man, once you get to know him.
+
+Agent Smith is here to help you.
+
+Agent Smith is a crossplatform client [RedMatrix](https://redmatrix.me).
+
+Agent Smith is very flexible. He can even change colors.
+
+It's okay, Mr. Anderson. Agent Smith is here.
 
 Take the RED pill.
 
