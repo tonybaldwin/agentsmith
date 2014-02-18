@@ -22,9 +22,11 @@ Most modern Linux OSes and *BSDs usually already have tcl, although you may have
 For windows and other OSes, go to http://www.activestate.com/activetcl to get tcl.
 
 
-##########################################################################
+-----------------------------------------------------------------
 This program was written by Tony Baldwin
+
 Other software by Tony: https://tonybaldwin.info/channel/software
+-----------------------------------------------------------------
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,4 +42,3 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 Or find them on the internet at http://www.fsf.org
-#########################################################################
