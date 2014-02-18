@@ -7,7 +7,7 @@ Agent Smith is not a bad man, once you get to know him.
 
 Agent Smith is here to help you.
 
-Agent Smith is a crossplatform client [RedMatrix](https://redmatrix.me).
+Agent Smith is a crossplatform client for the [RedMatrix](https://redmatrix.me).
 
 Agent Smith is very flexible. He can even change colors.
 
@@ -31,6 +31,9 @@ Most modern Linux OSes and *BSDs usually already have tcl, although you may have
 
 For windows and other OSes, go to http://www.activestate.com/activetcl to get tcl.
 
+TODO:
+--------
+* add xposting controls
 
 -----------------------------------------------------------------
 This program was written by Tony Baldwin
