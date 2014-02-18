@@ -11,7 +11,7 @@ Agent Smith requires:
 * Tcl8.5
 * Tk8.5, and
 * tcllib (for http, tls, and base64)
-* in Debian and some others, tcl-tlsis a separate pkg. Install it.
+* in Debian and some others, tcl-tls is a separate pkg. Install it.
 
 It also requires that you [Get Zot](http://getzot.com), of course.
 
