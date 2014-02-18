@@ -33,6 +33,13 @@ global subject
 global tags
 global ptext
 global cats
+global lj
+global ij
+global dw
+global sn
+global lt
+global wp
+global pp
 
 set allvars [list rurl uname pword txfg txbg brow wbg wtx novar]
 
@@ -216,6 +223,41 @@ grid [tk::label .p.sub -text "Title: "]\
 
 pack .p -in . -fill x
 
+frame .flu -bd 1 -relief raised
+
+tk::label .flu.lbl -text "Xpost to "
+tk::label .flu.lt -text "Libertree "
+tk::checkbutton .flu.ltx -variable lt
+tk::label .flu.st -text "StatusNet "
+tk::checkbutton .flu.stx -variable sn
+tk::label .flu.pp -text "PumpIO "
+tk::checkbutton .flu.ppx -variable pp
+tk::label .flu.lj -text "LiveJournal "
+tk::checkbutton .flu.ljx -variable lj
+tk::label .flu.ij -text "InsaneJournal "
+tk::checkbutton .flu.ijx -variable ij
+tk::label .flu.dw -text "DreamWidth "
+tk::checkbutton .flu.dwx -variable dw
+tk::label .flu.wpp -text "WordPress "
+tk::checkbutton .flu.wpx -variable wp
+
+pack .flu.lbl -in .flu -side left
+pack .flu.lj -in .flu -side left
+pack .flu.ljx -in .flu -side left
+pack .flu.ij -in .flu -side left
+pack .flu.ijx -in .flu -side left
+pack .flu.dw -in .flu -side left
+pack .flu.dwx -in .flu -side left
+pack .flu.wpp -in .flu -side left
+pack .flu.wpx -in .flu -side left
+pack .flu.st -in .flu -side left
+pack .flu.stx -in .flu -side left
+pack .flu.lt -in .flu -side left
+pack .flu.ltx -in .flu -side left
+pack .flu.pp -in .flu -side left
+pack .flu.ppx -in .flu -side left
+
+pack .flu -in . -fill x
 
 ###
 # font size, affects size of font in editor, not in post
@@ -1010,7 +1052,7 @@ proc rpost {} {
 	::http::register https 443 ::tls::socket
 	set auth "$::uname:$::pword"
 	set auth64 [::base64::encode $auth]
-	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "category" $::cats "title" "$::subject"]
+	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "category" $::cats "title" "$::subject" "statusnet_enable" "$::sn" "wppost_enable" "$::wp" "ljpost_enable" "$::lj" "ijpost_enable" "$::ij" "dwpost_enable" "$::dw" "libertree_enable" "$::lt" "pumpio_enable" "$::pp"]
 	set myauth [list "Authorization" "Basic $auth64"]
 	set token [::http::geturl $::rurl/api/statuses/update.xml -headers $myauth -query $myquery]
 }
