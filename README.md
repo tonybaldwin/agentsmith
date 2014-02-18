@@ -26,8 +26,8 @@ For windows and other OSes, go to http://www.activestate.com/activetcl to get tc
 This program was written by Tony Baldwin
 
 Other software by Tony: https://tonybaldwin.info/channel/software
------------------------------------------------------------------
 
+-----------------------------------------------------------------
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 3 of the License, or
