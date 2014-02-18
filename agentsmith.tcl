@@ -126,15 +126,32 @@ tk::button .fluff.abt -text "About" -command {about}
 # bbcode menu
 ##################
 menu .fluff.bb.t -tearoff 1
+.fluff.bb.t add command -label "Bold" -command {bbbold}
+.fluff.bb.t add command -label "Italics" -command {bbital}
+.fluff.bb.t add command -label "Underline" -command {bbunder}
+.fluff.bb.t add command -label "Strikethrough" -command {bbstrike}
+#.fluff.bb.t add command -label "Color" -command {bbcolor}
+#.fluff.bb.t add command -label "Size" -command {bbsize}
+.fluff.bb.t add  separator
 .fluff.bb.t add command -label "Link" -command {bblink}
 .fluff.bb.t add command -label "Image" -command {bimg}
 .fluff.bb.t add command -label "E-mail" -command {bmail}
-.fluff.bb.t add command -label "embed" -command {embed}
+.fluff.bb.t add command -label "Video" -command {embed}
+.fluff.bb.t add command -label "Audio" -command {audio}
 .fluff.bb.t add command -label "BlockQuote" -command {bbquote}
 .fluff.bb.t add command -label "CodeBlock" -command {bcode}
 .fluff.bb.t add command -label "Time Stamp" -command {indate}
+.fluff.bb.t add command -label "No BB" -command {nobb}
+.fluff.bb.t add separator
 .fluff.bb.t add command -label "Observer Name" -command {obname}
-
+.fluff.bb.t add command -label "Observer Photo" -command {obphoto}
+.fluff.bb.t add command -label "Observer Address" -command {obaddress}
+.fluff.bb.t add command -label "Observer Url" -command {oburl}
+.fluff.bb.t add command -label "Observer Base Url" -command {obbaseurl}
+.fluff.bb.t add command -label "Authed Observer" -command {obauthed}
+.fluff.bb.t add command -label "UnAuthed Observer" -command {obunauthed}
+.fluff.bb.t add separator
+.fluff.bb.t add command -label "BBCode Help" -command {bbhelp}
 
 # view menu
 ####################################
@@ -774,19 +791,59 @@ pack .link.btns -in .link -side left
 }
 
 proc bcode {} {
-.txt.txt insert insert "\[code\]INSERT CODE TEXT HERE\[/code\]"
+.txt.txt insert insert "\[code\]INSERT CODE HERE\[/code\]"
 }
 
 proc embed {} {
 .txt.txt insert insert "\[embed\]INSERT VIDEO URL HERE\[/embed\]"
 }
 
+proc audio {} {
+.txt.txt insert insert "\[audio\]INSERT VIDEO URL HERE\[/audio\]"
+}
+
 proc bbquote {} {
 .txt.txt insert insert "\[quote\]INSERT QUOTED TEXT HERE\[/quote\]"
 }
 
+proc bbbold {} {
+.txt.txt insert insert "\[b\]INSERT BOLD TEXT HERE\[/b\]"
+}
+
+proc bbital {} {
+.txt.txt insert insert "\[i\]INSERT ITALIC TEXT HERE\[/i\]"
+}
+
+proc bbunder {} {
+.txt.txt insert insert "\[u\]INSERT UNDERLINE TEXT HERE\[/u\]"
+}
+
+proc bbstrike {} {
+.txt.txt insert insert "\[s\]INSERT STRIKETHROUGH TEXT HERE\[/s\]"
+}
+ 
+proc nobb {} {
+.txt.txt insert insert "\[nobb\]INSERT TEXT HERE\[/nobb\]"
+}
+ 
 proc obname {} {
 	.txt.txt insert insert "\[observer.name\]"
+}
+
+proc obaddress {} {
+	.txt.txt insert insert "\[observer.address\]"
+}
+
+proc oburl {} {
+	.txt.txt insert insert "\[observer.url\]"
+}
+
+proc obbaseurl {} {
+	.txt.txt insert insert "\[observer.baseurl\]"
+}
+
+proc obphoto {} {
+	.txt.txt insert insert "\[observer.photo\]"
 }
 
 proc bmail {} {
@@ -879,6 +936,17 @@ proc browz {} {
 	tk_messageBox -message "You have not chosen a browser.\nLet's set the browser now." -type ok -title "Set browser"
 	set brow [tk_getOpenFile -filetypes $::file_types]
 	{browz}
+	}
+}
+
+proc bbhelp {} {
+	global brow
+	if {$brow != " "} {
+	eval exec $::brow $::rurl/help/bbcode &
+	} else {
+	tk_messageBox -message "You have not chosen a browser.\nLet's set the browser now." -type ok -title "Set browser"
+	set brow [tk_getOpenFile -filetypes $::file_types]
+	{bbcode}
 	}
 }
 
