@@ -166,7 +166,7 @@ menu .fluff.bb.t -tearoff 1
 menu .fluff.view.t -tearoff 1
 
 .fluff.view.t add command -label "redmatrix site" -command {
-    exec $::brow http://$::rurl &
+    exec $::brow $::rurl &
     }
 
 # pack em in...
