@@ -40,6 +40,7 @@ global sn
 global lt
 global wp
 global pp
+global r2r
 
 set allvars [list rurl uname pword txfg txbg brow wbg wtx novar]
 
@@ -221,7 +222,6 @@ grid [tk::label .p.sub -text "Title: "]\
 [tk::button .p.post -text "GO" -command rpost]\
 [tk::button .p.q -text "Quit" -command {leave}]
 
-pack .p -in . -fill x
 
 frame .flu -bd 1 -relief raised
 
@@ -240,6 +240,8 @@ tk::label .flu.dw -text "DreamWidth "
 tk::checkbutton .flu.dwx -variable dw
 tk::label .flu.wpp -text "WordPress "
 tk::checkbutton .flu.wpx -variable wp
+tk::label .flu.r2r -text "Red2Red"
+tk::checkbutton .flu.red -variable r2r
 
 pack .flu.lbl -in .flu -side left
 pack .flu.lj -in .flu -side left
@@ -256,8 +258,11 @@ pack .flu.lt -in .flu -side left
 pack .flu.ltx -in .flu -side left
 pack .flu.pp -in .flu -side left
 pack .flu.ppx -in .flu -side left
+pack .flu.r2r -in .flu -side left
+pack .flu.red -in .flu -side left
 
 pack .flu -in . -fill x
+pack .p -in . -fill x
 
 ###
 # font size, affects size of font in editor, not in post
@@ -1052,7 +1057,7 @@ proc rpost {} {
 	::http::register https 443 ::tls::socket
 	set auth "$::uname:$::pword"
 	set auth64 [::base64::encode $auth]
-	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "category" $::cats "title" "$::subject" "statusnet_enable" "$::sn" "wppost_enable" "$::wp" "ljpost_enable" "$::lj" "ijpost_enable" "$::ij" "dwpost_enable" "$::dw" "libertree_enable" "$::lt" "pumpio_enable" "$::pp"]
+	set myquery [::http::formatQuery "status" "$update" "source" "AgentSmith" "channel" "$::chan" "category" $::cats "title" "$::subject" "statusnet_enable" "$::sn" "wppost_enable" "$::wp" "ljpost_enable" "$::lj" "ijpost_enable" "$::ij" "dwpost_enable" "$::dw" "libertree_enable" "$::lt" "pumpio_enable" "$::pp" "rtor_enable" "$::r2r"]
 	set myauth [list "Authorization" "Basic $auth64"]
 	set token [::http::geturl $::rurl/api/statuses/update.xml -headers $myauth -query $myquery]
 }
