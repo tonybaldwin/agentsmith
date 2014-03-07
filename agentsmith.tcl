@@ -71,6 +71,7 @@ bind . <Control-z> {catch {.txt.txt edit undo}}
 bind . <Control-r> {catch {.txt.txt edit redo}}
 bind . <Control-a> {.txt.txt tag add sel 1.0 end}
 bind . <F4> specialbox
+bind . <Control-t> {indate}
 bind . <F3> {FindPopup}
 bind . <Control-s> {file_save}
 bind . <Control-b> {file_saveas}
@@ -124,6 +125,7 @@ menu .fluff.ed.t -tearoff 1
 .fluff.ed.t add command -label "Search/Replace" -command {FindPopup} -accelerator F3
 .fluff.ed.t add separator
 .fluff.ed.t add command -label "Word Count" -command {wordcount} -accelerator F5
+.fluff.ed.t add command -label "Time Stamp" -command {indate} -accelerator Ctrl-t
 .fluff.ed.t add separator
 .fluff.ed.t add command -label "Preferences" -command {prefs} -accelerator F8
 
@@ -149,7 +151,6 @@ menu .fluff.bb.t -tearoff 1
 .fluff.bb.t add command -label "Audio" -command {audio}
 .fluff.bb.t add command -label "BlockQuote" -command {bbquote}
 .fluff.bb.t add command -label "CodeBlock" -command {bcode}
-.fluff.bb.t add command -label "Time Stamp" -command {indate}
 .fluff.bb.t add command -label "No BB" -command {nobb}
 .fluff.bb.t add separator
 .fluff.bb.t add command -label "Observer Name" -command {obname}
@@ -789,7 +790,7 @@ proc wordcount {} {
 
 proc indate {} {
 	if {![info exists date]} {set date " "}
-	set date [clock format [clock seconds] -format "%R %p %D"]
+	set date [clock format [clock seconds] -format "%a %Y.%m.%d.%H.%M.%S %Z"]
 	.txt.txt insert insert "$date\n"
 }
 
