@@ -1,7 +1,7 @@
 # Agent Smith README
 version 0.1
   
-![AgentSmith](http://tonybaldwin.homelinux.net/images/agentsmith-blackred.png)
+![AgentSmith](http://tonyb.myownsite.me/images/agentsmith-blackred.png)
 
 Agent Smith is not a bad man, once you get to know him.
 
@@ -29,14 +29,14 @@ It also requires that you [Get Zot](http://getzot.com), of course.
 
 (see https://redmatrix.me )
 
-Most modern Linux OSes and *BSDs usually already have tcl, although you may have to install it with your favorite package manager.  (yum, apt, pacman, whatever).
+Most modern Linux OSes and the BSDs usually already have tcl, although you may have to install it with your favorite package manager.  (yum, apt, pacman, whatever).
 
 For windows and other OSes, go to http://www.activestate.com/activetcl to get tcl.
 
 -----------------------------------------------------------------
 This program was written by Tony Baldwin
 
-Other software by Tony: https://tonybaldwin.info/channel/software
+Other software by Tony: http://software.tonybaldwin.me
 
 -----------------------------------------------------------------
 This program is free software; you can redistribute it and/or modify
